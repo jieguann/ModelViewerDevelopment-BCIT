@@ -19,10 +19,14 @@ public class partController : MonoBehaviour
     //move object
     private Vector3 mOffset;
     private float mZCoord;
-    private Vector3 centrePoint;
+    
 
     //name text object
     private GameObject nameText;
+
+    //reset the pivot of the mesh
+    //private Vector3 pivotPosition; // the spawn position of the pivot point
+    private Transform pivot;
 
     void Start()
     {
@@ -32,7 +36,13 @@ public class partController : MonoBehaviour
         //Fetch the original color of the GameObject
         originalColor = m_Renderer.material.color;
 
+        //set the pivot with parent
+        pivot = new GameObject().transform;
+        pivot.position = transform.GetComponent<Renderer>().bounds.center; //put it to the centre of mesh
+        pivot.SetParent(transform.parent);
+        transform.SetParent(pivot);
         
+
     }
 
     
@@ -61,30 +71,30 @@ public class partController : MonoBehaviour
     void OnMouseDown()
 
     {
-        centrePoint = transform.GetComponent<Renderer>().bounds.center;
-        Vector3 textPosition = new Vector3(centrePoint.x + 2f, centrePoint.y, centrePoint.z);
+        
+        Vector3 textPosition = new Vector3(pivot.position.x + 2f, pivot.position.y, pivot.position.z);
         nameText = Instantiate(gameManager.Instance.nameTextPrefeb);
         nameText.GetComponent<TextMeshPro>().text = gameObject.name;
         nameText.GetComponent<RectTransform>().position = textPosition;
 
         mZCoord = Camera.main.WorldToScreenPoint(
 
-            transform.position).z;
+            pivot.position).z;
         // Store offset = gameobject world pos - mouse world pos
-        mOffset = transform.position - GetMouseAsWorldPoint();
+        mOffset = pivot.position - GetMouseAsWorldPoint();
 
     }
 
     void OnMouseDrag()
 
     {
-        centrePoint = transform.GetComponent<Renderer>().bounds.center;
-        Vector3 textPosition = new Vector3(centrePoint.x + 2f, centrePoint.y, centrePoint.z);
+        
+        Vector3 textPosition = new Vector3(pivot.position.x + 2f, pivot.position.y, pivot.position.z);
         nameText.GetComponent<RectTransform>().position = textPosition;
         //Debug.Log(centrePoint);
         //Debug.Log(transform.position);
 
-        transform.position = GetMouseAsWorldPoint() + mOffset;
+        pivot.position = GetMouseAsWorldPoint() + mOffset;
     }
 
     private Vector3 GetMouseAsWorldPoint()
