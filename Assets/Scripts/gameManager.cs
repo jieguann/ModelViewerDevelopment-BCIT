@@ -9,8 +9,13 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float moveSpeed;
 
     private GameObject testModel;
-    public  List<Transform> children = new List<Transform>();
-    // Start is called before the first frame update
+    private  List<Transform> children = new List<Transform>();
+
+    public GameObject nameTextPrefeb;
+    
+
+
+    
     private static gameManager _instance;
     public static gameManager Instance
     {
@@ -68,18 +73,22 @@ public class gameManager : MonoBehaviour
 
 
         //Press right button to rotate
-        /*
-        testModel.transform.Rotate(mouseY * rotationSpeed * Time.deltaTime,
+        if (Input.GetMouseButton(1)) { 
+        
+            testModel.transform.Rotate(mouseY * rotationSpeed * Time.deltaTime,
             -mouseX * rotationSpeed * Time.deltaTime,
             0, Space.World);
-        */
+        }
+
+
 
         //Press middle button to move
-        /*
-        testModel.transform.Translate(mouseX * moveSpeed * Time.deltaTime,
+        if (Input.GetMouseButton(2))
+        {
+            testModel.transform.Translate(mouseX * moveSpeed * Time.deltaTime,
             mouseY * moveSpeed * Time.deltaTime,
             0, Space.World);
-        */
+        }
 
 
     }
