@@ -11,13 +11,24 @@ public class gameManager : MonoBehaviour
     public GameObject testModel;
     public  List<Transform> children = new List<Transform>();
 
+    
+
     public GameObject nameTextPrefeb;
 
     public Material partMaterial;
-    
 
 
-    
+    //origital parameter of reset
+    public Transform spawnPoint;
+    public Color originalColor;
+
+    public List<Transform> pivot = new List<Transform>();
+    public List<Vector3> pivotOriginalPosition = new List<Vector3>();
+
+    public Shader originalShader;
+
+
+
     private static gameManager _instance;
     public static gameManager Instance
     {
@@ -36,16 +47,14 @@ public class gameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        testModel = Instantiate(prefebModel); //for SetupTreeView Access before start
+        testModel = Instantiate(prefebModel, spawnPoint.position,spawnPoint.rotation); //for SetupTreeView Access before start
+        originalColor = partMaterial.color;
+        originalShader = partMaterial.shader;
     }
 
     void Start()
     {
         
-
-        //Add list of child
-        
-
         foreach (Transform rootObject in testModel.transform)
         {
             
@@ -57,8 +66,9 @@ public class gameManager : MonoBehaviour
                 childCollider.isTrigger = true;
 
                 child.gameObject.AddComponent<partController>();
-
+                //Add list of child
                 children.Add(child);
+                //childrenPosition.Add(child.parent.position);
             }
         }
 

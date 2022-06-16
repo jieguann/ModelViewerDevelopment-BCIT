@@ -28,20 +28,28 @@ public class partController : MonoBehaviour
     //private Vector3 pivotPosition; // the spawn position of the pivot point
     private Transform pivot;
 
+    private void Awake()
+    {
+        pivot = new GameObject().transform;
+        pivot.name = "pivot";
+        
+    }
     void Start()
     {
-       
+        pivot.position = transform.GetComponent<Renderer>().bounds.center; //put it to the centre of mesh
+        pivot.SetParent(transform.parent);
+        transform.SetParent(pivot);
+
+        //add pivot to the list
+        gameManager.Instance.pivot.Add(pivot);
+        gameManager.Instance.pivotOriginalPosition.Add(pivot.localPosition);
         //Fetch the mesh renderer component from the GameObject
         m_Renderer = GetComponent<MeshRenderer>();
         //Fetch the original color of the GameObject
         originalColor = m_Renderer.material.color;
 
         //set the pivot with parent
-        pivot = new GameObject().transform;
-        pivot.name = "pivot";
-        pivot.position = transform.GetComponent<Renderer>().bounds.center; //put it to the centre of mesh
-        pivot.SetParent(transform.parent);
-        transform.SetParent(pivot);
+        
 
         //set up material for x-Ray
         m_Renderer.material = gameManager.Instance.partMaterial;

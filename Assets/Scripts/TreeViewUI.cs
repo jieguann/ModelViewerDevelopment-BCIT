@@ -20,7 +20,7 @@ public class TreeViewUI : MonoBehaviour
     }
     void OnGUI()
     {
-        setupTreeView.OnGUI(new Rect(30,50, 500, 500));
+        setupTreeView.OnGUI(new Rect(100,50, 400, 500));
     }
     
 }
