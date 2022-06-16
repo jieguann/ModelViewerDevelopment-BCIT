@@ -5,21 +5,18 @@ using UnityEngine;
 public class UIEvent : MonoBehaviour
 {
     [SerializeField] GameObject treeView;
-    private bool toggleBool;
-    private void Awake()
-    {
-        
-    }
+    private bool partListToggleBool;
+   
 
     private void Start()
     {
         
-        toggleBool = false;
-        treeView.SetActive(toggleBool);
+        partListToggleBool = false;
+        treeView.SetActive(partListToggleBool);
     }
     public void displayTreeView()
     {
-        toggleBool = !toggleBool;
-        treeView.SetActive(toggleBool);
+        partListToggleBool = !partListToggleBool;
+        treeView.SetActive(partListToggleBool);
     }
 }
