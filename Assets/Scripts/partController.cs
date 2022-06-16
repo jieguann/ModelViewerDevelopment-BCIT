@@ -42,6 +42,9 @@ public class partController : MonoBehaviour
         pivot.position = transform.GetComponent<Renderer>().bounds.center; //put it to the centre of mesh
         pivot.SetParent(transform.parent);
         transform.SetParent(pivot);
+
+        //set up material for x-Ray
+        m_Renderer.material = gameManager.Instance.partMaterial;
         
 
     }

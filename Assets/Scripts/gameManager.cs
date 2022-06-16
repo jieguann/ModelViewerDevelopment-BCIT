@@ -9,9 +9,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float moveSpeed;
 
     public GameObject testModel;
-    private  List<Transform> children = new List<Transform>();
+    public  List<Transform> children = new List<Transform>();
 
     public GameObject nameTextPrefeb;
+
+    public Material partMaterial;
     
 
 
