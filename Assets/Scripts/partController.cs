@@ -38,6 +38,7 @@ public class partController : MonoBehaviour
 
         //set the pivot with parent
         pivot = new GameObject().transform;
+        pivot.name = "pivot";
         pivot.position = transform.GetComponent<Renderer>().bounds.center; //put it to the centre of mesh
         pivot.SetParent(transform.parent);
         transform.SetParent(pivot);

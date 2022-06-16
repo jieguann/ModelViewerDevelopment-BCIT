@@ -8,7 +8,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float moveSpeed;
 
-    private GameObject testModel;
+    public GameObject testModel;
     private  List<Transform> children = new List<Transform>();
 
     public GameObject nameTextPrefeb;
@@ -34,20 +34,19 @@ public class gameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        testModel = Instantiate(prefebModel); //for SetupTreeView Access before start
     }
 
     void Start()
     {
-        testModel = Instantiate(prefebModel);
+        
 
         //Add list of child
         
 
         foreach (Transform rootObject in testModel.transform)
         {
-            //Debug.Log(child.name);
-            //Debug.Log(child.GetType());
-            //children.Add(child);
+            
             foreach(Transform child in rootObject)
             {
                 Debug.Log(child.name);
