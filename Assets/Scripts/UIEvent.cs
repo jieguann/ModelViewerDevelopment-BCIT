@@ -16,9 +16,10 @@ public class UIEvent : MonoBehaviour
     private void Start()
     {
         
-        partListToggleBool = false;
+        
         transparentToggleBool = false;
-        treeView.SetActive(partListToggleBool);
+        //partListToggleBool = false;
+        //treeView.SetActive(partListToggleBool);
         //set up origial color
         color = gameManager.Instance.originalColor;
 
@@ -47,7 +48,7 @@ public class UIEvent : MonoBehaviour
         
         for (int i=0;i < gameManager.Instance.children.Count; i++)
         {
-           
+            gameManager.Instance.children[i].GetComponent<Renderer>().material.shader = gameManager.Instance.originalShader;
             gameManager.Instance.children[i].gameObject.GetComponent<Renderer>().material.color = color;
         }
         
@@ -57,9 +58,11 @@ public class UIEvent : MonoBehaviour
     public void toggleTransparent()
     {
         transparentToggleBool = !transparentToggleBool;
+        color = gameManager.Instance.originalColor;
         for (int i = 0; i < gameManager.Instance.children.Count; i++)
         {
-            if(transparentToggleBool == false)
+            gameManager.Instance.children[i].gameObject.GetComponent<Renderer>().material.color = color;
+            if (transparentToggleBool == false)
             {
                 gameManager.Instance.children[i].GetComponent<Renderer>().material.shader = gameManager.Instance.originalShader;
             }

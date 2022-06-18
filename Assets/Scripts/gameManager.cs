@@ -60,7 +60,7 @@ public class gameManager : MonoBehaviour
             
             foreach(Transform child in rootObject)
             {
-                Debug.Log(child.name);
+                //Debug.Log(child.name);
                 MeshCollider childCollider = child.gameObject.AddComponent<MeshCollider>();
                 childCollider.convex = true;
                 childCollider.isTrigger = true;
