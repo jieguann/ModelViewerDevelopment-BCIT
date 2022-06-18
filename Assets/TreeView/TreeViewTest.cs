@@ -17,7 +17,7 @@ public class TreeViewTest : MonoBehaviour
         data.ParentID = -1;
         datas.Add(data);
 
-
+        /*
         int parentID = 0;
         foreach (Transform rootObject in gameManager.Instance.testModel.transform)
         {
@@ -48,10 +48,10 @@ public class TreeViewTest : MonoBehaviour
         TreeView.RefreshTreeView();
         //注册子元素的鼠标点击事件
         TreeView.ClickItemEvent += CallBack;
+        */
+
+
         
-
-
-        /*
         data = new TreeViewData();
         data.Name = "1.第一节";
         data.ParentID = 0;
@@ -110,7 +110,7 @@ public class TreeViewTest : MonoBehaviour
         TreeView.RefreshTreeView();
         //注册子元素的鼠标点击事件
         TreeView.ClickItemEvent += CallBack;
-        */
+        
     }
 
     void Update()
