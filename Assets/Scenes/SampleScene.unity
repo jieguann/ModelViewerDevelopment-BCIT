@@ -1948,7 +1948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 6
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -1975,6 +1975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeViewItem: {fileID: 2426831549708890339, guid: 73e90e10670fd4b43ae197ef68b368ee, type: 3}
   parentObject: {fileID: 5236917244307098577, guid: ce6479ed6331573429e499023f8e2c9d, type: 3}
+  itemList: []
 --- !u!114 &1795384578
 MonoBehaviour:
   m_ObjectHideFlags: 0
