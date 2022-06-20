@@ -50,15 +50,19 @@ public class gameManager : MonoBehaviour
         testModel = Instantiate(prefebModel, spawnPoint.position,spawnPoint.rotation); //for SetupTreeView Access before start
         originalColor = partMaterial.color;
         originalShader = partMaterial.shader;
+
+
+        
     }
 
     void Start()
     {
-        
+
+
         foreach (Transform rootObject in testModel.transform)
         {
-            
-            foreach(Transform child in rootObject)
+
+            foreach (Transform child in rootObject)
             {
                 //Debug.Log(child.name);
                 MeshCollider childCollider = child.gameObject.AddComponent<MeshCollider>();
@@ -71,7 +75,6 @@ public class gameManager : MonoBehaviour
                 //childrenPosition.Add(child.parent.position);
             }
         }
-
         //Debug.Log("Count: " + children.Count);
     }
 

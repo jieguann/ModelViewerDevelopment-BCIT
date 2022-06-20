@@ -11,14 +11,14 @@ public class UIEvent : MonoBehaviour
     private Color color;
 
 
-
+    
 
     private void Start()
     {
         
         
         transparentToggleBool = false;
-        //partListToggleBool = false;
+        partListToggleBool = true;
         treeView.SetActive(partListToggleBool);
         //set up origial color
         color = gameManager.Instance.originalColor;
@@ -76,6 +76,7 @@ public class UIEvent : MonoBehaviour
 
     public void resetScene()
     {
+        treeView.SetActive(false);
         gameManager.Instance.testModel.transform.position = gameManager.Instance.spawnPoint.transform.position;
         gameManager.Instance.testModel.transform.rotation = gameManager.Instance.spawnPoint.transform.rotation;
         //reset x ray

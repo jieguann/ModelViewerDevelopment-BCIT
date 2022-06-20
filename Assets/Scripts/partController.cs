@@ -58,18 +58,12 @@ public class partController : MonoBehaviour
     }
 
     
+
     void OnMouseOver()
     {
-        // Change the color of the GameObject to red when the mouse is over GameObject
+        
         m_Renderer.material.color = hightLightColor;
-        /*
-        if (Input.GetMouseButton(0))
-        {
-            //move the part
-            //Vector3 posScreen = cam.WorldToScreenPoint(transform.position);
-            transform.position = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, originalWTSP.z));
-        }
-        */
+        
     }
 
     
