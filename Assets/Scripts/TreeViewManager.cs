@@ -42,7 +42,7 @@ public class TreeViewManager : MonoBehaviour
             {
                 var item = Instantiate(treeViewItem, parentOne.transform);
                 itemList.Add(item);
-                item.transform.Find("Button").GetChild(0).GetComponent<TMP_Text>().text = child.transform.name;
+                item.transform.Find("Button").GetChild(0).GetComponent<TMP_Text>().text = child.GetChild(0).transform.name;
                 item.transform.Find("Button").GetComponent<Button>().onClick.AddListener(delegate { onTextColorChange(item); }
                         );
                 item.transform.Find("Arrow").gameObject.SetActive(false);

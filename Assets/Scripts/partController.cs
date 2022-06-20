@@ -7,26 +7,24 @@ public class partController : MonoBehaviour
     //When the mouse hovers over the GameObject, it turns to this color (red)
     Color hightLightColor = Color.red;
 
-    //This stores the GameObject’s original color
+    //Store the original color
     Color originalColor;
 
-    //Get the GameObject’s mesh renderer to access the GameObject’s material and color
-    MeshRenderer m_Renderer;
-
-    
-    
+    //Define the material mesh color for changing it
+    MeshRenderer materialColor;
 
     //move object
-    private Vector3 mOffset;
-    private float mZCoord;
-    
+    private Vector3 offsetPosition;
+    private float objectZPosition;
+    private Transform pivot;
+
 
     //name text object
     private GameObject nameText;
-
+    [SerializeField] float nameTextXPosition;
     //reset the pivot of the mesh
     //private Vector3 pivotPosition; // the spawn position of the pivot point
-    private Transform pivot;
+    
 
     private void Awake()
     {
@@ -44,15 +42,15 @@ public class partController : MonoBehaviour
         gameManager.Instance.pivot.Add(pivot);
         gameManager.Instance.pivotOriginalPosition.Add(pivot.localPosition);
         //Fetch the mesh renderer component from the GameObject
-        m_Renderer = GetComponent<MeshRenderer>();
+        materialColor = GetComponent<MeshRenderer>();
         //Fetch the original color of the GameObject
-        originalColor = m_Renderer.material.color;
+        originalColor = materialColor.material.color;
 
         //set the pivot with parent
         
 
         //set up material for x-Ray
-        m_Renderer.material = gameManager.Instance.partMaterial;
+        materialColor.material = gameManager.Instance.partMaterial;
         
 
     }
@@ -62,7 +60,7 @@ public class partController : MonoBehaviour
     void OnMouseOver()
     {
         
-        m_Renderer.material.color = hightLightColor;
+        materialColor.material.color = hightLightColor;
         
     }
 
@@ -70,7 +68,7 @@ public class partController : MonoBehaviour
         void OnMouseExit()
     {
         // Reset the color of the GameObject back to normal
-        m_Renderer.material.color = originalColor;
+        materialColor.material.color = originalColor;
     }
 
 
@@ -79,15 +77,15 @@ public class partController : MonoBehaviour
     {
         
         Vector3 textPosition = new Vector3(pivot.position.x + 2f, pivot.position.y, pivot.position.z);
-        nameText = Instantiate(gameManager.Instance.nameTextPrefeb);
+        nameText = Instantiate(gameManager.Instance.nameTextPrefeb, gameManager.Instance.canvasParent.transform);
         nameText.GetComponent<TextMeshPro>().text = gameObject.name;
         nameText.GetComponent<RectTransform>().position = textPosition;
 
-        mZCoord = Camera.main.WorldToScreenPoint(
+        objectZPosition = Camera.main.WorldToScreenPoint(
 
             pivot.position).z;
         // Store offset = gameobject world pos - mouse world pos
-        mOffset = pivot.position - GetMouseAsWorldPoint();
+        offsetPosition = pivot.position - GetMouseAsWorldPoint();
 
     }
 
@@ -100,24 +98,20 @@ public class partController : MonoBehaviour
         //Debug.Log(centrePoint);
         //Debug.Log(transform.position);
 
-        pivot.position = GetMouseAsWorldPoint() + mOffset;
+        pivot.position = GetMouseAsWorldPoint() + offsetPosition;
     }
 
     private Vector3 GetMouseAsWorldPoint()
 
     {
 
-        // Pixel coordinates of mouse (x,y)
+        // the pixel position of mouse (x,y)
 
         Vector3 mousePoint = Input.mousePosition;
 
-
-
         // z coordinate of game object on screen
 
-        mousePoint.z = mZCoord;
-
-
+        mousePoint.z = objectZPosition;
 
         // Convert it to world points
 

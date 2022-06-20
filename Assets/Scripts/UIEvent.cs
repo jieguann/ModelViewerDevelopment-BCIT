@@ -18,7 +18,7 @@ public class UIEvent : MonoBehaviour
         
         
         transparentToggleBool = false;
-        partListToggleBool = true;
+        partListToggleBool = false;
         treeView.SetActive(partListToggleBool);
         //set up origial color
         color = gameManager.Instance.originalColor;

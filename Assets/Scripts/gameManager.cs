@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
 
     public Shader originalShader;
 
+    public GameObject canvasParent;
 
 
     private static gameManager _instance;
